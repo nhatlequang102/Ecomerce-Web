@@ -1,0 +1,78 @@
+{% extends 'homebase.html' %}
+{% load i18n %}
+{% block title %} Liên Hệ-{{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+
+{% block body %}
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'home' %}">Trang chủ</a></li>
+                <li class="active">Liên Hệ</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+
+    <!-- section -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <div class="billing-details">
+
+                        <div class="section-title">
+                            <h3 class="title">Gửi tin liên hệ</h3>
+
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{message.tags}}" role="alert">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                        </div>
+                        <form id="checkout-form" class="clearfix" method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <input type="submit" value="GỬI TIN">
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="col-md-8">
+                    <div class="shiping-methods">
+                        <div class="section-title">
+                            <h3 class="title">Thông tin liên hệ</h3>
+                        </div>
+                        <div >
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7311.614371911936!2d105.79490069139247!3d21.04521055084074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab3adfc757c9%3A0x579278b4632b7fe5!2zMjM1IEhvw6BuZyBRdeG7kWMgVmnhu4d0LCBOZ2jEqWEgVMOibiwgQ-G6p3UgR2nhuqV5LCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e1!3m2!1svi!2s!4v1614154694395!5m2!1svi!2s" width="750" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            {{ setting.contact|safe }}
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
+
+
+{% endblock %}
